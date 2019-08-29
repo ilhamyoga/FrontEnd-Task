@@ -1,43 +1,43 @@
 let categoryData = [
   { 
     key: '1',
-    imageLogo: 'https://image.flaticon.com/icons/png/512/103/103461.png',
+    imageLogo: '../assets/default-category.png',
     category: 'Design',
     detail: 'Total Task 3'
   },
   { 
     key: '2',
-    imageLogo: 'https://image.flaticon.com/icons/png/512/103/103461.png',
+    imageLogo: '../assets/default-category.png',
     category: 'Work',
     detail: 'Total Task 3'
   },
   { 
     key: '3',
-    imageLogo: 'https://image.flaticon.com/icons/png/512/103/103461.png',
+    imageLogo: '../assets/default-category.png',
     category: 'Learning',
     detail: 'Total Task 3'
   },
   { 
     key: '4',
-    imageLogo: 'https://image.flaticon.com/icons/png/512/103/103461.png',
+    imageLogo: '../assets/default-category.png',
     category: 'Work',
     detail: 'Total Task 3'
   },
   { 
-    key: '2',
-    imageLogo: 'https://image.flaticon.com/icons/png/512/103/103461.png',
+    key: '5',
+    imageLogo: '../assets/default-category.png',
     category: 'Work',
     detail: 'Total Task 3'
   },
   { 
-    key: '2',
-    imageLogo: 'https://image.flaticon.com/icons/png/512/103/103461.png',
+    key: '6',
+    imageLogo: '../assets/default-category.png',
     category: 'Work',
     detail: 'Total Task 3'
   },
   { 
-    key: '2',
-    imageLogo: 'https://image.flaticon.com/icons/png/512/103/103461.png',
+    key: '7',
+    imageLogo: '../assets/default-category.png',
     category: 'Work',
     detail: 'Total Task 3'
   },

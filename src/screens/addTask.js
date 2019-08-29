@@ -70,7 +70,7 @@ class ModalExample extends Component {
             style={{flexDirection:'row', justifyContent:'center', alignItems:'center', padding:10, backgroundColor:'orange', position:'absolute', borderRadius:50, bottom:20, right:15, elevation:4}}
           >
             <Image 
-              source={{uri: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/add-108-110631.png'}}
+              source={ require('../assets/add-default.png') }
               style={{height:40, width:40}}
             />
             <Text style={{fontSize:20, marginLeft:4}}>
