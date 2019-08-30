@@ -1,27 +1,34 @@
 import React, {Component} from 'react';
 import {Modal, Picker, Image, Text, View, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
 
-import ItemsCategory from '../Data/categoryData';
+import { getCategoryItem } from '../publics/actions/category'
+import { addTask } from '../publics/actions/todos'
+import { connect } from 'react-redux';
 
 class ModalExample extends Component {
   
   state = {
     modalVisible: false,
+    category: '',
+    title: '',
+    detail: ''
   };
+
+  updateCategory = (key) => {
+    this.setState({ category: key })
+  }
+
+  addTask(title,detail,category_id) {
+    this.props.dispatch(addTask(title,detail,category_id))
+  }
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
-  items = () => {
-      let item  = []
-      for(let i = 0; i<ItemsCategory.length; i++){
-        item.push(
-          <Picker.item key={i} label={ItemsCategory[i].category} value={ItemsCategory[i].category} />
-        )
-      }
-      return item
-    }
+  componentDidMount = () => {
+    this.props.dispatch(getCategoryItem())
+  }
 
   render() {
     return (
@@ -33,8 +40,8 @@ class ModalExample extends Component {
           <View style={{flex:1, backgroundColor: 'rgba(0, 0, 0, 0.20)', alignItems:'center', justifyContent:'center' }}>
             <View style={{backgroundColor:'#FFF', borderRadius:5, width:'70%', height:250, padding:10, elevation:3 }}>
               <View>
-                <TextInput style={styles.textInput} placeholder='Task Title'/>
-                <TextInput style={styles.textInput} placeholder='Detail..'/>
+                <TextInput style={styles.textInput} onChangeText={text => this.setState({title:text})} placeholder='Task Title'/>
+                <TextInput style={styles.textInput} onChangeText={text => this.setState({detail:text})} placeholder='Detail..'/>
               </View>
               <View style={{width:'90%', marginLeft:20, marginTop:20}}>
                 <Picker
@@ -42,15 +49,17 @@ class ModalExample extends Component {
                   selectedValue={this.state.category}
                   onValueChange = {this.updateCategory}
                 >
-                  <Picker.Item label="ADD NEW CATEGORY" value="" />
-                  {this.items()}
+                  { this.props.category.data.map(data=>(
+                    <Picker.Item label={data.category} value={data.key} key={data.key} />)
+                  )}
                 </Picker>
               </View>
               <View >
                 <TouchableOpacity
                   style={{alignSelf:'flex-end', top:20, right: 80}} 
                   onPress={() => {
-                    this.setModalVisible(!this.state.modalVisible);
+                    this.setModalVisible(!this.state.modalVisible),
+                    this.addTask(this.state.title, this.state.detail, this.state.category)
                   }}>
                   <Text style={{fontSize:18, fontWeight:'bold', color:'#000'}}>Add</Text>
                 </TouchableOpacity>
@@ -93,4 +102,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ModalExample;
+const mapStateToProps = (state) => {
+  return {
+    category: state.category,
+  };
+};
+
+export default connect(mapStateToProps)(ModalExample);
